@@ -1,6 +1,9 @@
+import random
 from django.shortcuts import render
 from markdown2 import Markdown
 markdowner = Markdown()
+from django.shortcuts import redirect
+
 
 from . import util
 
@@ -16,3 +19,8 @@ def entry(request, entry):
     })
 def newpage(request):
     return render(request,"encyclopedia/newpage.html",{})
+
+def randompage(request):
+    randomentry = random.choice(util.list_entries())
+
+    return redirect("/wiki/"+randomentry)
