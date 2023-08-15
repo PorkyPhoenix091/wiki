@@ -102,6 +102,10 @@ def editpage(request,entry):
                 return render(request, "encyclopedia/error.html",{
                     "errormsg" : "Sorry, this page does not exist and thus cannot be edited"
                 })
+    if util.get_entry(entry) is None:
+        return render(request, "encyclopedia/error.html",{
+                    "errormsg" : "Sorry, this page does not exist and thus cannot be edited"
+                })
     form = EditEntryForm(initial={'content': util.get_entry(entry)})
     return render(request,"encyclopedia/editpage.html",{
         "form":form,
