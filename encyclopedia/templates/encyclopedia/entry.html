@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+    <p class="float-right px-3"><a href={% url 'editpage' entry=entry%}>Edit page</a></p>
     {{code|safe}}
 
 {% endblock %}
