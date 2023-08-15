@@ -58,11 +58,9 @@ def newpage(request):
             name = form.cleaned_data["name"]
             content = form.cleaned_data["content"]
 
-            # Add the new task to our list of tasks
             if util.get_entry(name) is None:
                 util.save_entry(name, content)
-                # Redirect user to list of tasks
-                return redirect(reverse('entry', args=(name)))
+                return redirect(reverse('entry', kwargs={"entry":name}))
             else:
                 return render(request, "encyclopedia/error.html",{
                     "errormsg" : "Sorry, this page already exists"
